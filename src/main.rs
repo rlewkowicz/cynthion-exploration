@@ -16,40 +16,22 @@ mod decoder;
 use hex::encode;
 
 
-use anyhow::{Context as ErrorContext, Error, bail};
+use anyhow::Error;
 
 use crate::backend::cynthion::{
-    CynthionStream,
     CynthionDevice,
     CynthionHandle,
-    CynthionStop,
-    CynthionUsability::*,
     Speed
 };
 
-use crate::capture::{
-    create_capture,
-    CaptureReader,
-    CaptureWriter,
-    TrafficItem,
-    DeviceItem,
-    PacketId,
-    EndpointId,
-    EndpointTransferId
-};
 
-use crate::decoder::Decoder;
 
-use futures_lite::future::block_on;
-use nusb::transfer::RequestBuffer;
-use nusb::{DeviceInfo, list_devices};
 
 use std::thread::sleep;
-use std::time::{Duration, Instant};
+use std::time::Duration;
 
 const US: Duration = Duration::from_micros(1);
 const MS: Duration = Duration::from_millis(1);
-use anyhow::ensure;
 
 fn main() {
     if let Ok(devices) = CynthionDevice::scan() {
@@ -71,9 +53,9 @@ fn main() {
 
 fn display_error(result: Result<(), Error>) {
     if let Err(e) = result {
-       return ()
+       return 
     }
-    return ()
+    
 }
 
 fn launch_cythion(cynthion: CynthionHandle) -> Result<(), Error> {

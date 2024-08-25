@@ -13,7 +13,7 @@ use crate::data_stream::{
 use crate::compact_index::{compact_index, CompactWriter, CompactReader};
 use crate::rcu::SingleWriterRcu;
 use crate::vec_map::VecMap;
-use crate::usb::{self, prelude::*, validate_packet};
+use crate::usb::{self, prelude::*};
 use crate::util::{fmt_count, fmt_size};
 
 use anyhow::{Context, Error, bail};
